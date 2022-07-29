@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-const  HomeNav = () => {
+const HomeNav = () => {
     return (
         <View style={[styles.container, {
             // Try setting `flexDirection` to `"row"`.

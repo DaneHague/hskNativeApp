@@ -20,7 +20,7 @@ const linking: LinkingOptions<RootStackParamList> = {
               TabOneScreen: 'one',
             },
           },
-          TabTwo: {
+          MultiGridGame: {
             screens: {
               TabTwoScreen: 'two',
             },
