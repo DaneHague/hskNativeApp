@@ -25,17 +25,13 @@ const styles = {
     screenContainer: {
         flex: 1,
         justifyContent: 'center',
-        
     },
     container: {
 
     },
-    txtStyle: {
-        color: 'white'
-    },
     btnContainer: {
         flexDirection: 'row',
-        padding: 25
+        padding: 10,
     }
 }
 

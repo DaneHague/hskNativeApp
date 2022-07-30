@@ -1,11 +1,15 @@
 import { View, TouchableOpacity, Text } from 'react-native'
 
+import { useNavigation } from "@react-navigation/native";
+
+
 const GridNavButton = (props) => {
+    const navigation = useNavigation();
     return (
         <View style={styles.btnContainer}>
-            <TouchableOpacity style={styles.btn}>
+            <TouchableOpacity onPress={() => navigation.navigate("HskMultiGame")} style={styles.btn}>
                 <Text style={styles.btnText}>
-                    test
+                    {props.btnText}
                 </Text>
             </TouchableOpacity>
         </View>
@@ -14,16 +18,19 @@ const GridNavButton = (props) => {
 
 const styles = {
     btnText: {
-        color: 'black',
+        color: 'white',
         textAlign: 'center',
-        textAlignVertical: 'center'
+        textAlignVertical: 'center',
+        flex: 1
 
     },
     btn: {
         height: 100,
-        width: 200,
-        backgroundColor: 'red',
-        textAlignVertical: 'center'
+        width: 150,
+        backgroundColor: '#212121',
+        textAlignVertical: 'center',
+        borderRadius: 20
+        
         
     },
     btnContainer: {

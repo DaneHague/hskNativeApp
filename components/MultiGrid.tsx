@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
 
     bg: {
         color: "white",
-        textAlign: 'center'
+        textAlign: 'center',
     },
     gridRowBtns: {
         justifyContent: 'center',
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         textAlignVertical: 'center'
     },
     btnContainer: {
-        margin: 10
+        margin: 10,
     },
     gridContainer: {
         flex: 1,

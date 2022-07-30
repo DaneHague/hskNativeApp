@@ -10,6 +10,7 @@ export default function MultiGridGame() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Multi Game</Text>
+      <Text>Select a level</Text>
       <GameNav />
     </View>
   );
