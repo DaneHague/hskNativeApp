@@ -21,13 +21,14 @@ const styles = {
         color: 'white',
         textAlign: 'center',
         textAlignVertical: 'center',
-        flex: 1
+        flex: 1,
+        fontSize: 30
 
     },
     btn: {
         height: 100,
         width: 150,
-        backgroundColor: '#212121',
+        backgroundColor: 'orange',
         textAlignVertical: 'center',
         borderRadius: 20
         

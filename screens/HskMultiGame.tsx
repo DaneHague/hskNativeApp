@@ -6,10 +6,14 @@ import HskData3 from '../assets/HskData/hsk3.json'
 import HskData4 from '../assets/HskData/hsk4.json'
 import HskData5 from '../assets/HskData/hsk5.json'
 import HskData6 from '../assets/HskData/hsk6.json'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, } from 'react'
 
 export default function HskMultiGame(props) {
-
+    const [staticDataset, setStaticDataset] = useState();
+    const [answer, setAnswer] = useState(0);
+    const [disableNxtBtn, setdisableNxtBtn] = useState(true);
+    const [btnNextStyle, setBtnNextStyle] = useState('grey')
+    let btnBackground = 'green';
     const [currentHskData, setCurrentHskData] = useState([{
         "id": 1,
         "hanzi": "爱",
@@ -52,7 +56,6 @@ export default function HskMultiGame(props) {
           "枝[zhī]"
         ]
       }]);
-    let data;
 
     useEffect(() => {
         loadData();
@@ -83,21 +86,27 @@ export default function HskMultiGame(props) {
                 currentData = HskData1
         }
         
-        var a = [];
-        for (let i = 0; i < 4; i++){
-            var rndNum;
-            rndNum = Math.floor(Math.random() * currentData.length + 1)
-            a.push(currentData[rndNum])
-        }
-        setCurrentHskData(a);
+        setStaticDataset(currentData);
+        generateQuestion(currentData)
     }
 
-    
+    const generateQuestion = (currentData) => {
+      var a = [];
+        for (let i = 0; i < 4; i++){
+            var rndNum;
+            rndNum = Math.floor(Math.random() * currentData.length)
+            a.push(currentData[rndNum])
+        }
+        setAnswer(Math.floor(Math.random() * 4));
+        setdisableNxtBtn(true);
+        setCurrentHskData(a);
+        
+    }
 
     return (
         <View style={styles.container}>
-            <MultiGrid data={currentHskData} level={props.route.params.level} />
-            <TouchableOpacity>
+            <MultiGrid btnBackground={btnBackground} data={currentHskData} setBtnNextStyle={setBtnNextStyle} setdisableNxtBtn={setdisableNxtBtn} level={props.route.params.level} answer={answer} />
+            <TouchableOpacity disabled={disableNxtBtn} style={{backgroundColor: btnNextStyle, bottom:200}} onPress={() => generateQuestion(staticDataset)}>
                 <Text style={styles.btnNext}>
                     Next Question
                 </Text>
@@ -122,6 +131,11 @@ const styles = {
       width: '80%',
     },
     btnNext: {
-        color: 'white',
-    }
+      height: 50,
+      width: 300,
+      textAlign: 'center',
+      textAlignVertical: 'center',
+      color: 'white',
+      fontSize: 30,
+    },
   };
