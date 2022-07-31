@@ -7,10 +7,13 @@ const MultiGrid = (props:any) => {
     const [btn2Disabled, setBtn2Disabled] = useState(false);
     const [btn3Disabled, setBtn3Disabled] = useState(false);
     const [btn4Disabled, setBtn4Disabled] = useState(false);
+    const [showEnglishAnswer, setShowEnglishAnswer] = useState(false);
     const [btn1State, setBtn1State] = useState(props.initialBtnStateVal);
     const [btn2State, setBtn2State] = useState(props.initialBtnStateVal);
     const [btn3State, setBtn3State] = useState(props.initialBtnStateVal);
     const [btn4State, setBtn4State] = useState(props.initialBtnStateVal);
+    const [englishAnswer, setEnglishAnswer] = useState(props.data[props.answer].translations[0]);
+    const [answer, setAsnwer] = useState(props.data[props.answer].pinyin);
 
 
 
@@ -38,6 +41,8 @@ const MultiGrid = (props:any) => {
             setBtn2Disabled(true);
             setBtn3Disabled(true);
             setBtn4Disabled(true);
+            setShowEnglishAnswer(true);
+
             props.setdisableNxtBtn(false)
         } else {
             switch(btn){
@@ -60,8 +65,10 @@ const MultiGrid = (props:any) => {
             }
         }
     }
+    
 
     useEffect(() => {
+        setShowEnglishAnswer(false);
         setBtn1State(props.initialBtnStateVal);
         setBtn2State(props.initialBtnStateVal);
         setBtn3State(props.initialBtnStateVal);
@@ -70,13 +77,20 @@ const MultiGrid = (props:any) => {
         setBtn2Disabled(false);
         setBtn3Disabled(false);
         setBtn4Disabled(false);
+        setAsnwer(props.data[props.answer].pinyin);
+        setEnglishAnswer(props.data[props.answer].translations[0]);
     },[props.data])
 
     return (
-        <View style={{flex:1}}>
-            <Text style={defaultStyle.title}>Hsk {props.level}</Text>
+        <View style={{flex:14}}>
+            
             <View style={defaultStyle.gridContainer}>
-                <Text style={defaultStyle.bg}>{props.data[props.answer].pinyin}</Text>
+                
+                <View style={{flex:2, flexDirection:'column', alignItems:'center', top:10}}>
+                    <Text style={defaultStyle.title}>Hsk {props.level}</Text>
+                    <Text style={defaultStyle.bg}>{answer}</Text>
+                    <Text style={showEnglishAnswer ? defaultStyle.englishAnswer : defaultStyle.hideEnglishAnswer}>{englishAnswer} </Text>
+                </View>
                 <View style={defaultStyle.gridRowBtns}>
                         <TouchableOpacity disabled={btn1Disabled} onPress={() => checkAnswer(props.data[0].pinyin, 1)} style={defaultStyle.btnContainer}>
                             <Text style={btn1State === 0 ? defaultStyle.btnGrid1 : btn1State === 1 ? defaultStyle.btnGrid2 : defaultStyle.btnGrid3}>
@@ -107,18 +121,30 @@ const MultiGrid = (props:any) => {
 }
 
 
-let defaultStyle = StyleSheet.create({
+const defaultStyle = StyleSheet.create({
     title: {
-        color: 'white',
+        color: 'orange',
         textAlign: 'center',
+        fontSize: 30,
+    },
+    englishAnswer: {
+        color: "white",
+        textAlign: 'center',
+        fontSize: 30,
+        backgroundColor: '#212121'
+    },
+    hideEnglishAnswer: {
+        opacity: 0,
+        height: 0,
     },
     bg: {
         color: "white",
         textAlign: 'center',
-        bottom: 100,
         fontSize: 50,
+        backgroundColor: 'orange'
     },
     gridRowBtns: {
+        flex:1,
         justifyContent: 'center',
         flexDirection: 'row',
     },
@@ -130,7 +156,6 @@ let defaultStyle = StyleSheet.create({
         textAlignVertical: 'center',
         color: 'white',
         fontSize: 30,
-        borderRadius: 20
     },
     btnGrid2: {
         backgroundColor: 'red',
@@ -140,7 +165,6 @@ let defaultStyle = StyleSheet.create({
         textAlignVertical: 'center',
         color: 'white',
         fontSize: 30,
-        borderRadius: 20
     },
     btnGrid3: {
         backgroundColor: 'green',
@@ -150,7 +174,6 @@ let defaultStyle = StyleSheet.create({
         textAlignVertical: 'center',
         color: 'white',
         fontSize: 30,
-        borderRadius: 20
     },
     btnContainer: {
         margin: 10,
@@ -158,7 +181,8 @@ let defaultStyle = StyleSheet.create({
     },
     gridContainer: {
         flex:1,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        
     }
 });
 

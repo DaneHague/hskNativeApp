@@ -12,6 +12,7 @@ export default function HskMultiGame(props) {
     const [staticDataset, setStaticDataset] = useState();
     const [answer, setAnswer] = useState(0);
     const [disableNxtBtn, setdisableNxtBtn] = useState(true);
+    const [btnNextStyle, setBtnNextStyle] = useState('grey')
     let btnBackground = 'green';
     const [currentHskData, setCurrentHskData] = useState([{
         "id": 1,
@@ -104,12 +105,17 @@ export default function HskMultiGame(props) {
 
     return (
         <View style={styles.container}>
-            <MultiGrid initialBtnStateVal={0} btnBackground={btnBackground} data={currentHskData} setdisableNxtBtn={setdisableNxtBtn} level={props.route.params.level} answer={answer} />
-            <TouchableOpacity disabled={disableNxtBtn} style={{backgroundColor: disableNxtBtn ? 'grey': 'green', bottom:200}} onPress={() => generateQuestion(staticDataset)}>
-                <Text style={styles.btnNext}>
-                    Next Question
-                </Text>
-            </TouchableOpacity>
+            <MultiGrid initialBtnStateVal={0} btnBackground={btnBackground} data={currentHskData} setBtnNextStyle={setBtnNextStyle} setdisableNxtBtn={setdisableNxtBtn} level={props.route.params.level} answer={answer} />
+            <View style={{flex: 2, justifyContent:'flex-end'}}>
+              <TouchableOpacity disabled={disableNxtBtn} style={{backgroundColor: disableNxtBtn ? '#212121': 'green'  }} onPress={() => generateQuestion(staticDataset)}>
+                  <Text style={styles.btnNext}>
+                      Next Question
+                  </Text>
+              </TouchableOpacity>
+            </View>
+            <View style={{flex:4}}>
+
+            </View>
         </View>
     )
 }
@@ -118,7 +124,7 @@ const styles = {
     container: {
       flex: 1,
       alignItems: 'center',
-      justifyContent: 'center'
+      flexDirection: 'column',
     },
     title: {
       fontSize: 20,

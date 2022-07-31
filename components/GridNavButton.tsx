@@ -30,7 +30,6 @@ const styles = {
         width: 150,
         backgroundColor: 'orange',
         textAlignVertical: 'center',
-        borderRadius: 20
         
         
     },
