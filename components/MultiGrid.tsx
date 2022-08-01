@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { StyleSheet, Text, View, Button, TouchableOpacity, BackHandler } from "react-native";
 import { useState, useContext, createContext } from "react";
 
+
 const MultiGrid = (props:any) => {
     const [btn1Disabled, setBtn1Disabled] = useState(false);
     const [btn2Disabled, setBtn2Disabled] = useState(false);
@@ -86,7 +87,7 @@ const MultiGrid = (props:any) => {
             
             <View style={defaultStyle.gridContainer}>
                 
-                <View style={{flex:2, flexDirection:'column', alignItems:'center', top:10}}>
+                <View style={{flex:2, flexDirection:'column', alignItems:'center', top:10,}}>
                     <Text style={defaultStyle.title}>Hsk {props.level}</Text>
                     <Text style={defaultStyle.bg}>{answer}</Text>
                     <Text style={showEnglishAnswer ? defaultStyle.englishAnswer : defaultStyle.hideEnglishAnswer}>{englishAnswer} </Text>
@@ -123,25 +124,24 @@ const MultiGrid = (props:any) => {
 
 const defaultStyle = StyleSheet.create({
     title: {
-        color: 'orange',
         textAlign: 'center',
         fontSize: 30,
     },
     englishAnswer: {
-        color: "white",
         textAlign: 'center',
         fontSize: 30,
-        backgroundColor: '#212121'
     },
     hideEnglishAnswer: {
         opacity: 0,
         height: 0,
     },
     bg: {
-        color: "white",
         textAlign: 'center',
         fontSize: 50,
-        backgroundColor: 'orange'
+        padding:10,
+        borderColor: 'black',
+        borderRadius: 20,
+        borderWidth:1,
     },
     gridRowBtns: {
         flex:1,

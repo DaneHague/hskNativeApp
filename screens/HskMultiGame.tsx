@@ -125,6 +125,7 @@ const styles = {
       flex: 1,
       alignItems: 'center',
       flexDirection: 'column',
+      backgroundColor: 'white'
     },
     title: {
       fontSize: 20,

@@ -9,7 +9,6 @@ import GameNav from '../components/GameNav';
 export default function MultiGridGame() {
   return (
     <View style={styles.container}>
-      <Text style={styles.subTitle}>Select a level</Text>
       <GameNav />
     </View>
   );
@@ -19,13 +18,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    backgroundColor: 'white'
   },
   separator: {
     marginVertical: 30,
     height: 1,
     width: '80%',
-  },
-  subTitle: {
-    fontSize: 30
   }
 });
