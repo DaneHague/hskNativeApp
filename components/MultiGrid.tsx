@@ -177,7 +177,6 @@ const defaultStyle = StyleSheet.create({
     },
     btnContainer: {
         margin: 10,
-        
     },
     gridContainer: {
         flex:1,
