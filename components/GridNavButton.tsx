@@ -7,7 +7,7 @@ const GridNavButton = (props) => {
     const navigation = useNavigation();
     return (
         <View style={styles.btnContainer}>
-            <TouchableOpacity onPress={() => navigation.navigate('HskMultiGame',{level: props.level})} style={styles.btn}>
+            <TouchableOpacity onPress={() => navigation.navigate(props.navigateTo,{level: props.level})} style={styles.btn}>
                 <Text style={styles.btnText}>
                     {props.btnText}
                 </Text>

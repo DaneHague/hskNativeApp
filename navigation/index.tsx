@@ -20,6 +20,7 @@ import MultiGridGame from '../screens/MultiGridGame';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import HskMultiGame from '../screens/HskMultiGame';
+import PairLevelNav from '../screens/PairLevelNav';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -47,6 +48,7 @@ export function RootNavigator() {
       </Stack.Group>
       <Stack.Screen name="Dictionary" component={DictionaryScreen} />
       <Stack.Screen name="HskMultiGame" component={HskMultiGame} />
+      <Stack.Screen name="PairLevelNav" component={PairLevelNav} />
     </Stack.Navigator>
   );
 }
@@ -101,6 +103,15 @@ function BottomTabNavigator() {
         component={DictionaryScreen}
         options={{
           title: 'Dictionary',
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={'red'} />,
+        }}
+      />
+
+<BottomTab.Screen
+        name="PairNavScreen"
+        component={PairLevelNav}
+        options={{
+          title: 'Pair Matching',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={'red'} />,
         }}
       />

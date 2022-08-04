@@ -1,20 +1,20 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import GridNavButton from "./GridNavButton";
-const GameNav = () => {
+const GameNav = (props) => {
 
     return(
         <View style={styles.screenContainer}>
             <View style={styles.btnContainer}>
-                <GridNavButton level={1} btnText='一' />
-                <GridNavButton level={2} btnText='二' />
+                <GridNavButton navigateTo={props.nav} level={1} btnText='一' />
+                <GridNavButton navigateTo={props.nav} level={2} btnText='二' />
             </View>
             <View style={styles.btnContainer}>
-                <GridNavButton level={3} btnText='三' />
-                <GridNavButton level={4} btnText='四' />
+                <GridNavButton navigateTo={props.nav} level={3} btnText='三' />
+                <GridNavButton navigateTo={props.nav} level={4} btnText='四' />
             </View>
             <View style={styles.btnContainer}>
-                <GridNavButton level={5} btnText='五' />
-                <GridNavButton level={6} btnText='六' />
+                <GridNavButton navigateTo={props.nav} level={5} btnText='五' />
+                <GridNavButton navigateTo={props.nav} level={6} btnText='六' />
             </View>
         </View>
     )

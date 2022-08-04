@@ -9,7 +9,7 @@ import GameNav from '../components/GameNav';
 export default function MultiGridGame() {
   return (
     <View style={styles.container}>
-      <GameNav />
+      <GameNav nav='HskMultiGame' />
     </View>
   );
 }

@@ -30,6 +30,7 @@ export type RootTabParamList = {
   TabOne: undefined;
   MultiGridGame: undefined;
   DictionaryScreen: undefined;
+  PairNavScreen: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
