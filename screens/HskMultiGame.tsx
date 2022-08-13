@@ -8,7 +8,7 @@ import HskData5 from '../assets/HskData/hsk5.json'
 import HskData6 from '../assets/HskData/hsk6.json'
 import { useEffect, useState, } from 'react'
 
-export default function HskMultiGame(props) {
+export default function HskMultiGame(props:any) {
     const [staticDataset, setStaticDataset] = useState();
     const [answer, setAnswer] = useState(0);
     const [disableNxtBtn, setdisableNxtBtn] = useState(true);

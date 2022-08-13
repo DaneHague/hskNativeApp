@@ -21,6 +21,7 @@ import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../typ
 import LinkingConfiguration from './LinkingConfiguration';
 import HskMultiGame from '../screens/HskMultiGame';
 import PairLevelNav from '../screens/PairLevelNav';
+import MatchGame from '../components/MatchGame';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -48,7 +49,7 @@ export function RootNavigator() {
       </Stack.Group>
       <Stack.Screen name="Dictionary" component={DictionaryScreen} />
       <Stack.Screen name="HskMultiGame" component={HskMultiGame} />
-      <Stack.Screen name="PairLevelNav" component={PairLevelNav} />
+      <Stack.Screen name="MatchGame" component={MatchGame} />
     </Stack.Navigator>
   );
 }

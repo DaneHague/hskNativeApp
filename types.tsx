@@ -18,7 +18,8 @@ export type RootStackParamList = {
   Modal: undefined;
   NotFound: undefined;
   Dictionary: undefined;
-  HskMultiGame: {level:number}
+  HskMultiGame: {level:number};
+  MatchGame: {level:number};
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
@@ -31,6 +32,7 @@ export type RootTabParamList = {
   MultiGridGame: undefined;
   DictionaryScreen: undefined;
   PairNavScreen: undefined;
+  MatchGame: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<

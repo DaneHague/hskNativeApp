@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import GridNavButton from "./GridNavButton";
-const GameNav = (props) => {
+const GameNav = (props:any) => {
 
     return(
         <View style={styles.screenContainer}>

@@ -5,7 +5,7 @@ export default function PairLevelNav() {
     return (
         <View style={styles.container}>
             <Text>Pair Nav</Text>
-            <GameNav nav='PairNavScreen' />
+            <GameNav nav='MatchGame' level={1} />
         </View>
     )
 }
