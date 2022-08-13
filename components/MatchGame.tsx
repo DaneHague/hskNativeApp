@@ -39,13 +39,13 @@ const MatchGame = (props:any) => {
     const [answers, setAnswers] = useState({});
     const [activeButton1, setActiveButton1] = useState(0);
     const [answerTotal, setAnswerTotal] = useState(0);
+    const [answerEnglish, setAnswerEnglish] = useState('');
 
     useEffect(() =>{
         InitialiseGame();
     },[])
 
     function checkAnswer(answer:any, button:number){
-
         switch(button){
             case 1:
                 setHanzi1State(1);
@@ -91,6 +91,8 @@ const MatchGame = (props:any) => {
             let answerLocation2 = answers.pinyin.indexOf(answer) >=0 ? answers.pinyin.indexOf(answer) : answers.hanzi.indexOf(answer);
             
             if(answerLocation1 === answerLocation2) {
+                setAnswerEnglish(answers.translation[answerLocation1]);
+                console.log(answers.translation[answerLocation1]);
                 switch(button){
                     case 1:
                         setHanzi1State(2);
@@ -233,7 +235,6 @@ const MatchGame = (props:any) => {
                 }
             }
             
-            //console.log(answer);
 
             // reset for next answer
             setAnswer1('');
@@ -264,14 +265,15 @@ const MatchGame = (props:any) => {
         var tmpPinyin = [];
         var rnd;
         var minusCounter = 4;
-        var answers = {'hanzi' : [''], 'pinyin': ['']};
+        var answers = {'hanzi' : [''], 'pinyin': [''], 'translation' : ['']};
         
 
         for (let i = 0; i < 4; i++){
             rnd = Math.floor(Math.random() * minusCounter)
             tmpHanzi.push(hazniData[rnd].hanzi);
-            answers.hanzi.push(hazniData[rnd].hanzi)
-            answers.pinyin.push(hazniData[rnd].pinyin)
+            answers.hanzi.push(hazniData[rnd].hanzi);
+            answers.pinyin.push(hazniData[rnd].pinyin);
+            answers.translation.push(hazniData[rnd].translations[0])
             hazniData.splice(rnd, 1);
             minusCounter--;
         }
@@ -293,6 +295,7 @@ const MatchGame = (props:any) => {
 
         answers.hanzi.splice(0,1);
         answers.pinyin.splice(0,1);
+        answers.translation.splice(0,1);
         setAnswers(answers);
     }
 
@@ -351,41 +354,42 @@ const MatchGame = (props:any) => {
 
     return (
         <View style={styles.container}>
-            <Text>Hsk {props.route.params.level}</Text>
+            <Text style={styles.header}>Hsk {props.route.params.level}</Text>
+            <Text style={styles.txtEnglishAnswer}>{answerEnglish}</Text>
             <View style={styles.screenContainer}>
-            <View style={styles.btnContainer}>
-                <TouchableOpacity disabled={hanzi1Disabled} style={hanzi1State === 0 ? styles.btn1 : hanzi1State === 1 ? styles.btn2 : styles.btn3} onPress={() => checkAnswer(hanzi1,1)} >
-                    <Text style={styles.btnText}>{hanzi1}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity disabled={pinyin1Disabled} style={pinyin1State === 0 ? styles.btn1 : pinyin1State === 1 ? styles.btn2 : styles.btn3}  onPress={() => checkAnswer(pinyin1,2)}>
-                    <Text style={styles.btnText}>{pinyin1}</Text>
-                </TouchableOpacity>
+                <View style={styles.btnContainer}>
+                    <TouchableOpacity disabled={hanzi1Disabled} style={hanzi1State === 0 ? styles.btn1 : hanzi1State === 1 ? styles.btn2 : styles.btn3} onPress={() => checkAnswer(hanzi1,1)} >
+                        <Text style={styles.btnText}>{hanzi1}</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity disabled={pinyin1Disabled} style={pinyin1State === 0 ? styles.btn1 : pinyin1State === 1 ? styles.btn2 : styles.btn3}  onPress={() => checkAnswer(pinyin1,2)}>
+                        <Text style={styles.btnText}>{pinyin1}</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.btnContainer}>
+                    <TouchableOpacity disabled={pinyin2Disabled} style={pinyin2State === 0 ? styles.btn1 : pinyin2State === 1 ? styles.btn2 : styles.btn3} onPress={() => checkAnswer(pinyin2,3)}>
+                        <Text style={styles.btnText}>{pinyin2}</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity disabled={hanzi2Disabled} style={hanzi2State === 0 ? styles.btn1 : hanzi2State === 1 ? styles.btn2 : styles.btn3}  onPress={() => checkAnswer(hanzi2,4)}>
+                        <Text style={styles.btnText}>{hanzi2}</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.btnContainer}>
+                    <TouchableOpacity disabled={pinyin3Disabled} style={pinyin3State === 0 ? styles.btn1 : pinyin3State === 1 ? styles.btn2 : styles.btn3} onPress={() => checkAnswer(pinyin3,5)}>
+                        <Text style={styles.btnText}>{pinyin3}</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity disabled={hanzi3Disabled} style={hanzi3State === 0 ? styles.btn1 : hanzi3State === 1 ? styles.btn2 : styles.btn3} onPress={() => checkAnswer(hanzi3,6)}>
+                        <Text style={styles.btnText} >{hanzi3}</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.btnContainer}>
+                    <TouchableOpacity disabled={hanzi4Disabled} style={hanzi4State === 0 ? styles.btn1 : hanzi4State === 1 ? styles.btn2 : styles.btn3}  onPress={() => checkAnswer(hanzi4,7)}>
+                        <Text style={styles.btnText}>{hanzi4}</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity disabled={pinyin4Disabled} style={pinyin4State === 0 ? styles.btn1 : pinyin4State === 1 ? styles.btn2 : styles.btn3} onPress={() => checkAnswer(pinyin4,8)}>
+                        <Text style={styles.btnText}>{pinyin4}</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-            <View style={styles.btnContainer}>
-                <TouchableOpacity disabled={pinyin2Disabled} style={pinyin2State === 0 ? styles.btn1 : pinyin2State === 1 ? styles.btn2 : styles.btn3} onPress={() => checkAnswer(pinyin2,3)}>
-                    <Text style={styles.btnText}>{pinyin2}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity disabled={hanzi2Disabled} style={hanzi2State === 0 ? styles.btn1 : hanzi2State === 1 ? styles.btn2 : styles.btn3}  onPress={() => checkAnswer(hanzi2,4)}>
-                    <Text style={styles.btnText}>{hanzi2}</Text>
-                </TouchableOpacity>
-            </View>
-            <View style={styles.btnContainer}>
-                <TouchableOpacity disabled={pinyin3Disabled} style={pinyin3State === 0 ? styles.btn1 : pinyin3State === 1 ? styles.btn2 : styles.btn3} onPress={() => checkAnswer(pinyin3,5)}>
-                    <Text style={styles.btnText}>{pinyin3}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity disabled={hanzi3Disabled} style={hanzi3State === 0 ? styles.btn1 : hanzi3State === 1 ? styles.btn2 : styles.btn3} onPress={() => checkAnswer(hanzi3,6)}>
-                    <Text style={styles.btnText} >{hanzi3}</Text>
-                </TouchableOpacity>
-            </View>
-            <View style={styles.btnContainer}>
-                <TouchableOpacity disabled={hanzi4Disabled} style={hanzi4State === 0 ? styles.btn1 : hanzi4State === 1 ? styles.btn2 : styles.btn3}  onPress={() => checkAnswer(hanzi4,7)}>
-                    <Text style={styles.btnText}>{hanzi4}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity disabled={pinyin4Disabled} style={pinyin4State === 0 ? styles.btn1 : pinyin4State === 1 ? styles.btn2 : styles.btn3} onPress={() => checkAnswer(pinyin4,8)}>
-                    <Text style={styles.btnText}>{pinyin4}</Text>
-                </TouchableOpacity>
-            </View>
-        </View>
         </View>
         
     )
@@ -435,6 +439,12 @@ const styles = {
     btnContainer: {
         flexDirection: 'row',
         padding: 10,
+    },
+    txtEnglishAnswer: {
+        fontSize: 15,
+    },
+    header: {
+        fontSize: 30,
     }
 }
 
