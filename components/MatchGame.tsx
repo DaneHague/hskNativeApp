@@ -1,12 +1,11 @@
 import { View, Text, TouchableOpacity } from 'react-native';
-import HskData1 from '../assets/HskData/hsk1.json'
-import HskData2 from '../assets/HskData/hsk2.json'
-import HskData3 from '../assets/HskData/hsk3.json'
-import HskData4 from '../assets/HskData/hsk4.json'
-import HskData5 from '../assets/HskData/hsk5.json'
-import HskData6 from '../assets/HskData/hsk6.json'
+import HskData1 from '../assets/HskData/hsk1.json';
+import HskData2 from '../assets/HskData/hsk2.json';
+import HskData3 from '../assets/HskData/hsk3.json';
+import HskData4 from '../assets/HskData/hsk4.json';
+import HskData5 from '../assets/HskData/hsk5.json';
+import HskData6 from '../assets/HskData/hsk6.json';
 import { useEffect, useState } from 'react';
-import { breakStatement } from '@babel/types';
 
 
 const MatchGame = (props:any) => {
@@ -92,7 +91,6 @@ const MatchGame = (props:any) => {
             
             if(answerLocation1 === answerLocation2) {
                 setAnswerEnglish(answers.translation[answerLocation1]);
-                console.log(answers.translation[answerLocation1]);
                 switch(button){
                     case 1:
                         setHanzi1State(2);
@@ -441,7 +439,7 @@ const styles = {
         padding: 10,
     },
     txtEnglishAnswer: {
-        fontSize: 15,
+        fontSize: 20,
     },
     header: {
         fontSize: 30,

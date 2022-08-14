@@ -5,16 +5,17 @@ import { RootTabScreenProps } from '../types';
 import  HomeNav from '../components/HomeNav';
 import { SetStateAction, useEffect, useState } from 'react';
 import * as RNFS from 'react-native-fs';
-import  HskData from '../assets/HskData/hsk6.json';
+import  HskAllData from '../assets/HskData/hskAll.json';
+
 import { TextInput } from 'react-native-paper';
 
 export default function DictionaryScreen({ navigation }: RootTabScreenProps<'DictionaryScreen'>) {
 
-      const [filteredData, setFilteredData] = useState(HskData);
+      const [filteredData, setFilteredData] = useState(HskAllData);
 
       const Item = ({id, hanzi, pinyin, translation1, translation2, translation3 }:any) => (
-        <View >
-          <Text style={styles.itemContainer} >{hanzi}-{pinyin}-{translation1}-{translation2}-{translation3}</Text>
+        <View style={styles.background} >
+          <Text style={styles.itemContainer} >{hanzi}-{pinyin}-{translation1}{translation2 == undefined ? '' : ' - ' + translation2}{translation3 == undefined ? '' : ' - ' + translation3}</Text>
         </View>
       );
 
@@ -31,7 +32,7 @@ export default function DictionaryScreen({ navigation }: RootTabScreenProps<'Dic
     };
 
   const searchHanzi = (input:any) => {
-    let data = HskData;
+    let data = HskAllData;
     let searchData = data.filter((Item) => {
       return Item.hanzi.toLocaleLowerCase().includes(input.toLocaleLowerCase())
     });
@@ -53,9 +54,13 @@ export default function DictionaryScreen({ navigation }: RootTabScreenProps<'Dic
 
 const styles = {
   itemContainer: {
-    backgroundColor: 'wheat',
+    backgroundColor: 'white',
     marginVertical:10,
     marginHorizontal: 15,
-    fontSize: 25
+    fontSize: 25,
+    color: 'black'
+  },
+  background: {
+    backgroundColor: 'white'
   }
 }
